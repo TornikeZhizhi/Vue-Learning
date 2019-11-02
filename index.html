@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Vue</title>
-</head>
-<body>
+  <head>
+    <title>Vue</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="exercise">
+      <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+      <p>VueJS is pretty cool - {{ name }} {{ age }}</p>
+      <!-- 2) Output your age, multiplied by 3 -->
+      <p>{{ ageFunction() }}</p>
+      <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+      <p>{{ randomFunction() }}</p>
+      <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+      <div>
+        <img style="width:100px;height:100px" v-bind:src="imgSource" />
+      </div>
+      <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+      <div>
+        <input type="text" v-bind:value="name" />
+      </div>
+      <div v-html="htmlCode"></div>
+      <input type="" v-on:input="changeName" value="test" name="" />
+      <button v-on:click="counterPlus(1, $event)">click</button>
+      <h2>
+        {{ counter > 10 ? "greater 10" : "less then 10" }} - {{ counter }}
+      </h2>
+      <h3 v-on:mousemove="updateC">
+        coordinates: {{ x }}/{{ y }}
+        <span v-on:mousemove.stop="">stop propagation</span>
+      </h3>
+      <input type="" v-on:keyup.enter="alertFunction" />
 
+      <input type="" v-model="modelName" />
+      <div>{{ modelName }}</div>
+    </div>
 
-<div id="app">
-<input type="" v-on:input="changeTitle" name="">
-<p>{{title}}</p>
-</div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#exercise",
+        data: {
+          name: "Tornike",
+          modelName: "giorgi",
+          counter: 0,
+          age: 16,
+          x: 0,
+          y: 0,
+          htmlCode: "<h1>hi am h1</hi>",
+          imgSource:
+            "http://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg"
+        },
 
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-<script type="text/javascript">
-	new Vue({
-		el:"#app",
-		data:{
-			title:"hello",
-			text:"i am paragraph"
-		},
-		methods:{
-			changeTitle:function (event) {
-				this.title = event.target.value
-			}
-		}
-	})
-</script>
-</body>
+        methods: {
+          ageFunction: function() {
+            return this.age * 3;
+          },
+          randomFunction: function() {
+            return Math.floor(Math.random() * 2);
+          },
+          changeName: function(event) {
+            this.name = event.target.value;
+          },
+          counterPlus: function(step, event) {
+            this.counter += step;
+          },
+          updateC: function(event) {
+            this.x = event.clientX;
+            this.y = event.clientY;
+          },
+          stopMousemoev: function(event) {
+            event.stopPropagation();
+          },
+          alertFunction: function() {
+            alert("hi");
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
