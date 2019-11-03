@@ -2,6 +2,36 @@
 <html>
   <head>
     <title>Vue</title>
+
+    <style>
+      .demo {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+      }
+      .float {
+        float: right;
+      }
+      .border {
+        border: none;
+      }
+      .red {
+        background: red;
+      }
+      .blue {
+        background: blue;
+      }
+      .green {
+        background: green;
+      }
+
+      .progress {
+        width: 0;
+        height: 20px;
+        background: red;
+      }
+    </style>
   </head>
   <body>
     <div id="exercise">
@@ -22,6 +52,29 @@
         <button @click="value += 5">Add 5</button>
         <button @click="value += 1">Add 1</button>
         <p>{{ result }}</p>
+        <input type="" v-model="color" />
+        <p>{{ color }}</p>
+      </div>
+
+      <div>
+        <div
+          class="demo"
+          @click="atachRed = !atachRed"
+          :class="divClasses"
+        ></div>
+        <div
+          class="demo"
+          @click="atachRed = !atachRed"
+          :class="{green:atachRed}"
+        ></div>
+        <div class="demo" @click="atachRed = !atachRed" :class="color"></div>
+      </div>
+      <input type="" v-model:input="modelName" />
+      <button @click="{stylechanger}">
+        click
+      </button>
+      <div class="progress" v-bind:style="{width}">
+        {{ width }}
       </div>
     </div>
 
