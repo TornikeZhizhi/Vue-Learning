@@ -4,75 +4,149 @@
     <title>Vue</title>
 
     <style>
-      .demo {
-        border: 1px solid black;
-        width: 100px;
-        height: 100px;
-        margin: 20px;
+      main {
+        display: flex;
+        width: 500px;
+        margin: 0 auto;
+        justify-content: space-between;
       }
 
-      .red {
-        background: red;
+      main > div {
+        flex: 0 0 45%;
+        max-width: 45%;
+        text-align: center;
       }
 
-      .blue {
-        background: blue;
+      .progress_bar {
+        border: 1px solid #000;
+        padding: 5px;
+        width: 100%;
+        background-color: chartreuse;
+        transition: all 0.7s;
+      }
+      button {
+        border: none;
+        background: none;
+        color: #fff;
+        padding: 15px 40px;
+        outline: none;
+        cursor: pointer;
+      }
+      .skilss button:nth-child(1) {
+        background-color: brown;
+      }
+      .skilss button:nth-child(2) {
+        background-color: slateblue;
+      }
+      .skilss button:nth-child(3) {
+        background-color: green;
+      }
+      .skilss button:nth-child(4) {
+        background-color: black;
+        color: #fff;
       }
 
-      .green {
+      h1 {
+        color: chocolate;
+        text-align: center;
+      }
+      .newGAME {
+        background: chartreuse;
+      }
+
+      .skills_fluid {
+        width: 700px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        padding: 50px 0 50px;
+      }
+
+      .damage_fluid {
+        width: 500px;
+        margin: 0 auto;
+        border: 2px solid #000;
+        padding: 0 20px;
+      }
+
+      .damage_fluid div h4:first-child h3 {
         background: green;
+        margin-bottom: 5px;
+        margin-top: 0;
+        color: #fff;
+      }
+
+      .damage_fluid h3 {
+        margin: 3px 0;
+      }
+
+      .damage_fluid div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .damage_fluid div h4 {
+        flex: 0 0 45%;
+        max-width: 45%;
+        margin: 0 !important;
+      }
+
+      .damage_fluid div h4:last-child h3 {
+        background: red;
+        margin-top: 0;
+      }
+      h3 {
+        margin: 0 !important;
+        margin-bottom: 5px !important;
       }
     </style>
   </head>
   <body>
-    <div v-bind:class="clas" id="exercise">
-      <template v-if="show">
-        <h1>
-          you see me?
-        </h1>
-      </template>
-      <button @click="show = !show">hide</button>
-      <ul>
-        <li v-for="(fruits,index) in ingridients">{{ fruits }}{{ index }}</li>
-      </ul>
-
-      <ul>
-        <template v-for="(data,index) in fourth">
-          <template v-if="Array.isArray(data)">
-            <li v-for="obj in data">
-              {{ obj }}
-            </li>
+    <div id="exercise">
+      <main>
+        <div>
+          <h2>You</h2>
+          <div class="progress_bar" v-bind:style="{ width: myWidth + '%'}">
+            <span>{{ myWidth }}</span>
+          </div>
+        </div>
+        <div>
+          <h2>Monster</h2>
+          <div class="progress_bar" v-bind:style="{ width: monsterWidth + '%'}">
+            <span>{{ monsterWidth }}</span>
+          </div>
+        </div>
+      </main>
+      <h1 v-if="YouTrue">You Win</h1>
+      <h1 v-if="MonsterTrue">Monster Win</h1>
+      <div class="skills_fluid">
+        <div class="skilss">
+          <template v-if="!show">
+            <button v-on:click="attackFunction">Attak</button>
+            <button>Special attak</button>
+            <button>Heal</button>
+            <button v-on:click="show=!show">Give Up</button>
           </template>
-          <template v-else>
-            <li>
-              {{ data }}
-            </li>
-          </template>
-          <!-- {{ data }} -->
+        </div>
+        <template>
+          <button
+            class="newGAME"
+            v-if="show"
+            v-on:click="show=false,YouTrue=false,MonsterTrue=false "
+          >
+            Start New Game
+          </button>
         </template>
-      </ul>
+      </div>
 
-      <!-- <template v-for="(fruits,index) in ingridients">
-        <div>
-          <span>{{ fruits }}</span>
-          <span>- {{ index }}</span>
+      <div class="damage_fluid">
+        <div v-if="!show">
+          <!-- <template v-for=""> -->
+          <h4 id="mydamage"></h4>
+          <h4 id="monsterDamage"></h4>
+          <!-- </template> -->
         </div>
-      </template>
-
-      <template v-for="fruits in persons">
-        <div>
-          <span v-for="(value,key) in fruits">{{ key }} : {{ value }}</span>
-        </div>
-      </template>
-
-      <template v-for="(el,index) in persons">
-        <li>
-          my name is {{ el.name }} i am {{ el.age }} years and my favorite color
-          is {{ el.color }}
-        </li>
-      </template>
-
-      <input type="text" v-model="clas" /> -->
+      </div>
     </div>
 
     <script src="vue.js"></script>

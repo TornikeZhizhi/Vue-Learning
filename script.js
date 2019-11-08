@@ -2,17 +2,48 @@ new Vue({
   el: "#exercise",
   data: {
     show: true,
-    clas: "red",
-    message: "hey",
-    ingridients: ["banan", "apple", "garlick"],
-    persons: [
-      { name: "toko", age: 33, color: "red" },
-      { name: "gui", age: 23, color: "yellow" }
-    ],
-    fourth: {
-      name: "TESTOBJECT",
-      data: [1.67, 1.33, 0.98, 2.21],
-      surname: "zhizhi"
+    YouTrue: false,
+    MonsterTrue: false,
+    myWidth: 100,
+    monsterWidth: 100,
+    damage: {
+      mydamage: 0,
+      monsterDamage: 0
+    }
+  },
+
+  methods: {
+    attackFunction: function(e) {
+      var myRandom = Math.floor(Math.random() * 15);
+      var monsterRandom = Math.floor(Math.random() * 15);
+
+      this.damage.mydamage = monsterRandom;
+      this.damage.monsterDamage = myRandom;
+
+      document.getElementById("mydamage").innerHTML +=
+        "<h3> You Hit - " + monsterRandom + "</h3>";
+
+      document.getElementById("monsterDamage").innerHTML +=
+        "<h3> You Hit - " + myRandom + "</h3>";
+
+      myWidthIndex = this.myWidth - myRandom;
+      monsterWidthIndex = this.monsterWidth - monsterRandom;
+
+      this.myWidth = myWidthIndex;
+      this.monsterWidth = monsterWidthIndex;
+      if (this.myWidth <= 0 || this.monsterWidth <= 0) {
+        if (this.myWidth <= this.monsterWidth) {
+          this.MonsterTrue = true;
+          this.show = !this.show;
+          this.myWidth = 100;
+          this.monsterWidth = 100;
+        } else {
+          this.YouTrue = true;
+          this.show = !this.show;
+          this.myWidth = 100;
+          this.monsterWidth = 100;
+        }
+      }
     }
   }
 });
