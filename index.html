@@ -10,72 +10,69 @@
         height: 100px;
         margin: 20px;
       }
-      .float {
-        float: right;
-      }
-      .border {
-        border: none;
-      }
+
       .red {
         background: red;
       }
+
       .blue {
         background: blue;
       }
+
       .green {
         background: green;
-      }
-
-      .progress {
-        width: 0;
-        height: 20px;
-        background: red;
       }
     </style>
   </head>
   <body>
-    <div id="exercise">
-      <button v-on:click="counter+=2">click</button>
-      <button v-on:click="counter-=2">click</button>
-      <button v-on:click="secondCounter+=2">click</button>
-      <h2>
-        {{ counter }}
-        <!-- {{ results() }} -->
-      </h2>
-      <h3>{{ outpoot }}{{ secondCounter }}</h3>
+    <div v-bind:class="clas" id="exercise">
+      <template v-if="show">
+        <h1>
+          you see me?
+        </h1>
+      </template>
+      <button @click="show = !show">hide</button>
+      <ul>
+        <li v-for="(fruits,index) in ingridients">{{ fruits }}{{ index }}</li>
+      </ul>
 
-      <input type="" v-model="modelName" />
-      <div>{{ modelName }}</div>
+      <ul>
+        <template v-for="(data,index) in fourth">
+          <template v-if="Array.isArray(data)">
+            <li v-for="obj in data">
+              {{ obj }}
+            </li>
+          </template>
+          <template v-else>
+            <li>
+              {{ data }}
+            </li>
+          </template>
+          <!-- {{ data }} -->
+        </template>
+      </ul>
 
-      <div>
-        <p>Current Value: {{ value }}</p>
-        <button @click="value += 5">Add 5</button>
-        <button @click="value += 1">Add 1</button>
-        <p>{{ result }}</p>
-        <input type="" v-model="color" />
-        <p>{{ color }}</p>
-      </div>
+      <!-- <template v-for="(fruits,index) in ingridients">
+        <div>
+          <span>{{ fruits }}</span>
+          <span>- {{ index }}</span>
+        </div>
+      </template>
 
-      <div>
-        <div
-          class="demo"
-          @click="atachRed = !atachRed"
-          :class="divClasses"
-        ></div>
-        <div
-          class="demo"
-          @click="atachRed = !atachRed"
-          :class="{green:atachRed}"
-        ></div>
-        <div class="demo" @click="atachRed = !atachRed" :class="color"></div>
-      </div>
-      <input type="" v-model:input="modelName" />
-      <button @click="{stylechanger}">
-        click
-      </button>
-      <div class="progress" v-bind:style="{width}">
-        {{ width }}
-      </div>
+      <template v-for="fruits in persons">
+        <div>
+          <span v-for="(value,key) in fruits">{{ key }} : {{ value }}</span>
+        </div>
+      </template>
+
+      <template v-for="(el,index) in persons">
+        <li>
+          my name is {{ el.name }} i am {{ el.age }} years and my favorite color
+          is {{ el.color }}
+        </li>
+      </template>
+
+      <input type="text" v-model="clas" /> -->
     </div>
 
     <script src="vue.js"></script>
