@@ -124,8 +124,8 @@
           <template v-if="!show">
             <button v-on:click="attackFunction">Attak</button>
             <button>Special attak</button>
-            <button>Heal</button>
-            <button v-on:click="show=!show">Give Up</button>
+            <button v-on:click="healHendler">Heal</button>
+            <button v-on:click="giveUpfunction">Give Up</button>
           </template>
         </div>
         <template>

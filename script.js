@@ -44,6 +44,23 @@ new Vue({
           this.monsterWidth = 100;
         }
       }
+    },
+
+    healHendler: function() {
+      var monsterRandom = Math.floor(Math.random() * 15);
+      var HealRandom = Math.floor(Math.random() * 20);
+
+      var dd = this;
+      dd.myWidth += HealRandom;
+
+      setTimeout(function() {
+        dd.myWidth -= monsterRandom;
+      }, 500);
+    },
+    giveUpfunction: function() {
+      this.show = !this.show;
+      this.myWidth = 100;
+      this.monsterWidth = 100;
     }
   }
 });
