@@ -105,13 +105,17 @@
     <div id="exercise">
       <main>
         <div>
-          <h2>You</h2>
+          <h2>
+            You - <span>{{ yourScore }}</span>
+          </h2>
           <div class="progress_bar" v-bind:style="{ width: myWidth + '%'}">
             <span>{{ myWidth }}</span>
           </div>
         </div>
         <div>
-          <h2>Monster</h2>
+          <h2>
+            Monster - <span>{{ monsterScore }}</span>
+          </h2>
           <div class="progress_bar" v-bind:style="{ width: monsterWidth + '%'}">
             <span>{{ monsterWidth }}</span>
           </div>
@@ -123,7 +127,7 @@
         <div class="skilss">
           <template v-if="!show">
             <button v-on:click="attackFunction">Attak</button>
-            <button>Special attak</button>
+            <button v-on:click="specialAttack">Special attak</button>
             <button v-on:click="healHendler">Heal</button>
             <button v-on:click="giveUpfunction">Give Up</button>
           </template>
