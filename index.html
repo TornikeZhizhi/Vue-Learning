@@ -1,159 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vue</title>
-
-    <style>
-      main {
-        display: flex;
-        width: 500px;
-        margin: 0 auto;
-        justify-content: space-between;
-      }
-
-      main > div {
-        flex: 0 0 45%;
-        max-width: 45%;
-        text-align: center;
-      }
-
-      .progress_bar {
-        border: 1px solid #000;
-        padding: 5px;
-        width: 100%;
-        background-color: chartreuse;
-        transition: all 0.7s;
-      }
-      button {
-        border: none;
-        background: none;
-        color: #fff;
-        padding: 15px 40px;
-        outline: none;
-        cursor: pointer;
-      }
-      .skilss button:nth-child(1) {
-        background-color: brown;
-      }
-      .skilss button:nth-child(2) {
-        background-color: slateblue;
-      }
-      .skilss button:nth-child(3) {
-        background-color: green;
-      }
-      .skilss button:nth-child(4) {
-        background-color: black;
-        color: #fff;
-      }
-
-      h1 {
-        color: chocolate;
-        text-align: center;
-      }
-      .newGAME {
-        background: chartreuse;
-      }
-
-      .skills_fluid {
-        width: 700px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        padding: 50px 0 50px;
-      }
-
-      .damage_fluid {
-        width: 500px;
-        margin: 0 auto;
-        border: 2px solid #000;
-        padding: 0 20px;
-      }
-
-      .damage_fluid div h4:first-child h3 {
-        background: green;
-        margin-bottom: 5px;
-        margin-top: 0;
-        color: #fff;
-      }
-
-      .damage_fluid h3 {
-        margin: 3px 0;
-      }
-
-      .damage_fluid div {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-      }
-      .damage_fluid div h4 {
-        flex: 0 0 45%;
-        max-width: 45%;
-        margin: 0 !important;
-      }
-
-      .damage_fluid div h4:last-child h3 {
-        background: red;
-        margin-top: 0;
-      }
-      h3 {
-        margin: 0 !important;
-        margin-bottom: 5px !important;
-      }
-    </style>
+    <title>Ariol</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="foundation.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="exercise">
-      <main>
-        <div>
-          <h2>
-            You - <span>{{ yourScore }}</span>
-          </h2>
-          <div class="progress_bar" v-bind:style="{ width: myWidth + '%'}">
-            <span>{{ myWidth }}</span>
+    <div id="app">
+      <div v-if="gameRunning" class="starter">
+        <div class="start">
+          <h1>Choose Your Side</h1>
+          <div class="tab_p">
+            <div @click="gameStart($event)" class="tabs">
+              Front
+            </div>
+            <div @click="gameStart($event)" class="tabs">
+              Back
+            </div>
           </div>
         </div>
-        <div>
-          <h2>
-            Monster - <span>{{ monsterScore }}</span>
-          </h2>
-          <div class="progress_bar" v-bind:style="{ width: monsterWidth + '%'}">
-            <span>{{ monsterWidth }}</span>
-          </div>
-        </div>
-      </main>
-      <h1 v-if="YouTrue">You Win</h1>
-      <h1 v-if="MonsterTrue">Monster Win</h1>
-      <div class="skills_fluid">
-        <div class="skilss">
-          <template v-if="!show">
-            <button v-on:click="attackFunction">Attak</button>
-            <button v-on:click="specialAttack">Special attak</button>
-            <button v-on:click="healHendler">Heal</button>
-            <button v-on:click="giveUpfunction">Give Up</button>
-          </template>
-        </div>
-        <template>
-          <button
-            class="newGAME"
-            v-if="show"
-            v-on:click="show=false,YouTrue=false,MonsterTrue=false "
-          >
-            Start New Game
-          </button>
-        </template>
       </div>
-
-      <div class="damage_fluid">
-        <div v-if="!show">
-          <!-- <template v-for=""> -->
-          <h4 id="mydamage"></h4>
-          <h4 id="monsterDamage"></h4>
-          <!-- </template> -->
+      <div v-if="!gameRunning" id="img_container">
+        <H2>Winscore is {{ winScore }}</H2>
+        <template>
+          <img v-if="front" src="front.jpg" alt="" />
+          <img v-if="!front" src="back.jpg" alt="" />
+        </template>
+        <button @click="playHandler">Play</button>
+        <div class="score_cont">
+          <div>
+            {{ MyInfo }} <span>{{ frontScore }}</span>
+          </div>
+          <div>
+            {{ EnemyInfo }} <span>{{ backScore }}</span>
+          </div>
         </div>
       </div>
     </div>
-
-    <script src="vue.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
