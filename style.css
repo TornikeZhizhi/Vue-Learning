@@ -9,19 +9,7 @@
   margin: auto;
   transition: width 500ms;
 }
-.score_cont {
-  display: flex;
-  justify-content: center;
-}
-.score_cont span {
-  background: #000;
-  color: #fff;
-  padding: 5px;
-}
-.score_cont div {
-  margin-top: 20px;
-  margin-right: 50px;
-}
+
 .controls,
 .log {
   margin-top: 30px;
@@ -37,54 +25,11 @@
   font-weight: bold;
   font-size: 22px;
 }
-#img_container img {
-  width: 100px;
-  height: 100px;
-}
+
 .log ul {
   list-style: none;
   font-weight: bold;
   text-transform: uppercase;
-}
-button {
-  outline: none;
-}
-
-#img_container img {
-  animation: fade 1s linear both;
-  margin: 0 auto;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100;
-  }
-}
-
-.start,
-#img_container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  margin: 0 auto;
-  width: 500px;
-  text-align: center;
-}
-.tab_p {
-  display: flex;
-  justify-content: center;
-}
-
-.tabs {
-  border-radius: 5px;
-  background-color: orange;
-  margin-right: 30px;
-  padding: 10px 30px;
-  cursor: pointer;
 }
 
 .log ul li {
@@ -103,14 +48,12 @@ button {
 
 button {
   font-size: 20px;
-  background-color: #00f30a;
+  background-color: #eee;
   padding: 12px;
   box-shadow: 0 1px 1px black;
   margin: 10px;
 }
-button:active {
-  transform: translateY(3px);
-}
+
 #start-game {
   background-color: #aaffb0;
 }
