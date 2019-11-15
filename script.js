@@ -1,3 +1,12 @@
+Vue.component("my-app", {
+  data: function() {
+    return {
+      gameName: "critical"
+    };
+  },
+  template: "<h1> Server Status {{gameName}} </h1>"
+});
+
 new Vue({
   el: "#app",
   data: {
