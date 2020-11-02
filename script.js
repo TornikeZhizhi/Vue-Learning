@@ -1,34 +1,53 @@
-var cmp = {
-  data: function() {
+const app = Vue.createApp({
+  data() {
     return {
-      gameName: "critical",
-      mode: false
+      friends: [
+        {
+          id: 'manuel',
+          name: 'Manuel Lorenz',
+          phone: '01234 5678 991',
+          email: 'manuel@localhost.com',
+        },
+        {
+          id: 'julie',
+          name: 'Julie Jones',
+          phone: '09876 543 221',
+          email: 'julie@localhost.com',
+        },
+      ],
     };
   },
-  template:
-    "<h1> Server Status {{gameName}} <button @click='statusChanger'>Change</button> </h1>",
+});
+
+app.component('friend-contact', {
+  template: `
+  <li>
+    <h2>{{ friend.name }}</h2>
+    <button @click="toggleDetails()">
+      {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
+    </button>
+    <ul v-if="detailsAreVisible">
+      <li><strong>Phone:</strong> {{ friend.phone }}</li>
+      <li><strong>Email:</strong> {{ friend.email }}</li>
+    </ul>
+  </li>
+  `,
+  data() {
+    return {
+      detailsAreVisible: false,
+      friend: {
+        id: 'manuel',
+        name: 'Manuel Lorenzo',
+        phone: '01234 5678 991',
+        email: 'manuel@localhost.com',
+      },
+    };
+  },
   methods: {
-    statusChanger: function() {
-      this.mode = !this.mode;
-      if (this.mode) {
-        this.gameName = "Normal";
-      } else {
-        this.gameName = "Critical";
-      }
-    }
-  }
-};
-
-new Vue({
-  el: "#app",
-  components: {
-    "my-app": cmp
-  }
+    toggleDetails() {
+      this.detailsAreVisible = !this.detailsAreVisible;
+    },
+  },
 });
 
-new Vue({
-  el: "#app2",
-  components: {
-    "my-app": cmp
-  }
-});
+app.mount('#app');
